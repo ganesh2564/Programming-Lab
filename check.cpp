@@ -217,6 +217,7 @@ int main() {
     cout << endl;
     list3.travelCircularLl();
     cout << endl;
+    cout << "close";
 
     return 0;
 }
