@@ -178,6 +178,47 @@ public:
             }
         }
     };
+        class dynamicArray {
+    public:
+        int cnt = 0;
+        T* arr = nullptr;
+        
+        dynamicArray() {
+            arr = new T[1];
+        }
+        
+        void addArray(T a) {
+            if (cnt == (1 << cnt) - 1) {
+                T* temp = new T[2 * (1 << cnt)];
+                for (int i = 0; i < cnt; i++) {
+                    temp[i] = arr[i];
+                }
+                delete[] arr;
+                arr = temp;
+            }
+            arr[cnt] = a;
+            cnt++;
+        }
+        
+        void arrayTravel() {
+            for (int i = 0; i < cnt; i++) {
+                cout << arr[i]<< " ";
+            }
+        }
+        
+        ~dynamicArray() {
+            delete[] arr;
+        }
+        void deleteArray(T a){
+            for(int i=0; i<cnt; i++){
+                if(arr[i]==a){
+                    for(int j=i; j<cnt; j++){
+                        arr[i]=arr[j+1];
+                    }
+                }
+            }
+        }
+    };
 };
 
 int main() {
@@ -190,6 +231,7 @@ int main() {
     list1.addElement(4);
     list1.travelLl();
     list1.deleteElement(1);
+    cout<<endl<<"delete 1 from singly";
     cout << endl;
     list1.travelLl();
     cout << endl;
@@ -202,6 +244,7 @@ int main() {
     list2.addElement(20);
     list2.travelDoublyLl();
     list2.deleteDoubly(1);
+    cout<<endl<<"delete 1 from doubly";
     cout << endl;
     list2.travelDoublyLl();
     cout << endl;
@@ -214,9 +257,21 @@ int main() {
     list3.addCircularElement(56);
     list3.travelCircularLl();
     list3.deleteCircularElement(56);
+    cout<<endl<<"delete 56 from circular";
     cout << endl;
     list3.travelCircularLl();
-    cout << endl;
+    cout << endl << "Dynamic array";
+    solution<int>::dynamicArray obj1;
+    obj1.addArray(1);
+    obj1.addArray(2);
+    obj1.addArray(3);
+    obj1.addArray(4);
+    obj1.addArray(0);
+    obj1.addArray(51);
+    obj1.arrayTravel();
+    obj1.deleteArray(0);
+    cout<<endl<<"delete 0 from array"<<endl;
+    obj1.arrayTravel();
 
     return 0;
 }
