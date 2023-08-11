@@ -16,7 +16,7 @@ public:
             head = NULL;
             tail = NULL;
         }
-        void addElement(T x) {
+        void addElementFirst(T x) {
             if (!head) {
                 head = tail = new node;
                 head->data = x;
@@ -25,9 +25,24 @@ public:
             else {
                 node* temp = new node;
                 temp->data = x;
+                temp->ptr = head;
+                head = temp;
+            }
+        }
+        
+        void addElement(T x) {
+            if (!head) {
+                head = new node;
+                head->data = x;
+                head->ptr = nullptr;
+                tail = head;
+            }
+            else {
+                node* temp = new node;
+                temp->data = x;
+                temp->ptr = nullptr;
                 tail->ptr = temp;
                 tail = temp;
-                tail->ptr = NULL;
             }
         }
         void travelLl() {
@@ -219,16 +234,29 @@ public:
             }
         }
     };
+    class stack: public singlyLl {
+    public:
+        void pushstk(T x) {
+            this->addElementFirst(x);
+        }
+        
+        void travelstk() {
+            this->travelLl();
+        }
+    };
 };
 
 int main() {
     cout << "singly";
     solution<int>::singlyLl list1;
+    list1.addElementFirst(501);
     list1.addElement(1);
     list1.addElement(2);
     list1.addElement(3);
     list1.addElement(1000);
     list1.addElement(4);
+    list1.addElementFirst(502);
+    list1.addElementFirst(503);
     list1.travelLl();
     list1.deleteElement(1);
     cout<<endl<<"delete 1 from singly";
@@ -272,6 +300,14 @@ int main() {
     obj1.deleteArray(0);
     cout<<endl<<"delete 0 from array"<<endl;
     obj1.arrayTravel();
-
+    cout<<endl<<"stack"<<endl;
+    solution<int>::stack stk;
+    stk.pushstk(1);
+    stk.pushstk(2);
+    stk.pushstk(3);
+    stk.pushstk(4);
+    stk.pushstk(5);
+    stk.travelstk();
+    cout <<endl<< "close all";
     return 0;
 }
