@@ -47,6 +47,28 @@ public:
                 tail = temp;
             }
         }
+	  T deleteFirst(){
+            if(!head){
+                cout<<"Stack underflow";
+            }
+            else{
+                node* temp = head;
+                head = head->ptr;
+                T a = temp->data;
+                delete temp;
+                return a;
+            }
+        }
+
+        T deleteLast(){
+            node* temp = head;
+            while(!temp->ptr){
+                temp = temp->ptr;
+            }
+            return temp->data;
+            delete temp;
+        }
+
         void travelLl() {
             node* t = head;
             while (t) {
@@ -241,6 +263,24 @@ public:
         }
         
         void travelstk() {
+            this->travelLl();
+        }
+
+        T pop(){
+            this->deleteFirst();
+        }
+	
+    };
+
+	class queue: public singlyLl {
+	public: 
+        void enqueue(T x) {
+            this->addElement(x);
+        }
+        T dequeue() {
+            this->deleteFirst();
+        }
+        void travelQ() {
             this->travelLl();
         }
     };

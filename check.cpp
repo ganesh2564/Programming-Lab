@@ -243,6 +243,10 @@ public:
         void travelstk() {
             this->travelLl();
         }
+
+        T pop(){
+            
+        }
     };
 };
 

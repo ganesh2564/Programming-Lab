@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    cout << "singly";
+    cout << "singly"<<endl;
     List<int>::singlyLl list1;
     list1.addElementFirst(501);
     list1.addElement(1);
@@ -21,7 +21,7 @@ int main() {
     list1.travelLl();
     cout << endl;
 
-    cout << "doubly";
+    cout << "doubly"<<endl;
     List<int>::doublyLl list2;
     list2.addElement(1);
     list2.addElement(2);
@@ -33,7 +33,7 @@ int main() {
     cout << endl;
     list2.travelDoublyLl();
     cout << endl;
-    cout << "circular";
+    cout << "circular"<<endl;
     List<int>::circularLl list3;
     list3.addCircularElement(1);
     list3.addCircularElement(2);
@@ -45,7 +45,7 @@ int main() {
     cout<<endl<<"delete 56 from circular";
     cout << endl;
     list3.travelCircularLl();
-    cout << endl << "Dynamic array";
+    cout << endl << "Dynamic array"<<endl;
     List<int>::dynamicArray obj1;
     obj1.addArray(1);
     obj1.addArray(2);
@@ -65,6 +65,23 @@ int main() {
     stk.pushstk(4);
     stk.pushstk(5);
     stk.travelstk();
+    cout <<endl;
+    cout<<"POP"<<endl<<stk.pop()<<endl;
+    stk.travelstk();
+    cout<<endl<<"Queue"<<endl;
+    
+    List<int>::queue Q;
+    Q.enqueue(1);
+    Q.enqueue(2);
+    Q.enqueue(3);
+    Q.enqueue(4);
+    Q.enqueue(5);
+    Q.enqueue(6);
+    Q.enqueue(7);
+    Q.travelQ();
+    cout<<endl;
+    cout<<"DEQUEUE"<<endl<<Q.dequeue()<<endl;
+    Q.travelQ();
     cout <<endl<< "close all";
     return 0;
 }
