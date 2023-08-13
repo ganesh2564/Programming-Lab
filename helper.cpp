@@ -83,5 +83,6 @@ int main() {
     cout<<"DEQUEUE"<<endl<<Q.dequeue()<<endl;
     Q.travelQ();
     cout <<endl<< "close all";
+    system("pause");
     return 0;
 }
