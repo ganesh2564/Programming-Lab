@@ -1,8 +1,10 @@
-#include <iostream>
+#ifndef LIST_H
+#define LIST_H
+#include<iostream>
 using namespace std;
 
 template<class T>
-class solution {
+class List {
 public:
     class singlyLl {
     public:
@@ -221,9 +223,7 @@ public:
             }
         }
         
-        ~dynamicArray() {
-            delete[] arr;
-        }
+        
         void deleteArray(T a){
             for(int i=0; i<cnt; i++){
                 if(arr[i]==a){
@@ -247,3 +247,4 @@ public:
 };
 
 
+#endif
