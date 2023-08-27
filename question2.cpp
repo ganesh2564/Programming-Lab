@@ -24,22 +24,14 @@ void generateRandomTestCases(List<int>::dynamicArray& dynamicArray, int probInse
     }
 }
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        cout << "Usage: " << argv[0] << " <test_case_number>" << endl;
-        return 1;
-    }
-
-    int testCase = atoi(argv[1]);
-    if (testCase != 2) {
-        cout << "Invalid test case number. Choose 2." << endl;
-        return 1;
-    }
-
+int main() {
+   
     List<int>::dynamicArray dynamicArray;
-
-    ofstream outputFile("scenario2_results.txt");
-    outputFile << "Scenario 2: Insertion/Deletion from start and end" << endl;
+    dynamicArray.addArray(1);
+    dynamicArray.addArray(2);
+    dynamicArray.addArray(3);
+    dynamicArray.addArray(4);
+    dynamicArray.addArray(5);
 
     for (int probInsert = 0; probInsert <= 100; probInsert += 10) {
         for (int probStart = 0; probStart <= 100; probStart += 10) {
@@ -47,12 +39,10 @@ int main(int argc, char* argv[]) {
             generateRandomTestCases(dynamicArray, probInsert, probStart);
             auto end = high_resolution_clock::now();
             auto duration = duration_cast<microseconds>(end - start);
-            outputFile << "Probability (Insert): " << probInsert << "%, Probability (Start): " << probStart
+            cout << "Probability (Insert): " << probInsert << "%, Probability (Start): " << probStart
                        << "%, Time taken: " << duration.count() << " microseconds" << endl;
+            dynamicArray.travel();
         }
     }
-
-    outputFile.close();
-
     return 0;
 }
