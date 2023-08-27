@@ -61,7 +61,7 @@ public:
 
         T deleteLast(){
             node* temp = head;
-            while(!temp->ptr){
+            while(temp->ptr){
                 temp = temp->ptr;
             }
             return temp->data;
@@ -237,6 +237,23 @@ public:
             arr[cnt] = a;
             cnt++;
         }
+	
+	void addArrayToFront(T a) {
+        if (cnt == (1 << cnt) - 1) {
+            T* temp = new T[2 * (1 << cnt)];
+            for (int i = 0; i < cnt; i++) {
+                temp[i + 1] = arr[i]; 
+            }
+            delete[] arr;
+            arr = temp;
+        } else {
+            for (int i = cnt; i > 0; i--) {
+                arr[i] = arr[i - 1]; 
+            }
+        }
+        arr[0] = a; 
+        cnt++;
+    }
         
         void arrayTravel() {
             for (int i = 0; i < cnt; i++) {
@@ -244,6 +261,43 @@ public:
             }
         }
         
+	        void addArrayAtIndex(T a, int index) {
+            if (index < 0 || index > cnt) {
+                std::cout << "Invalid index" << std::endl;
+                return;
+            }
+            
+            if (cnt == (1 << cnt) - 1) {
+                T* temp = new T[2 * (1 << cnt)];
+                for (int i = 0; i < index; i++) {
+                    temp[i] = arr[i];
+                }
+                temp[index] = a;
+                for (int i = index + 1; i <= cnt; i++) {
+                    temp[i] = arr[i - 1];
+                }
+                delete[] arr;
+                arr = temp;
+            } else {
+                for (int i = cnt; i > index; i--) {
+                    arr[i] = arr[i - 1];
+                }
+                arr[index] = a;
+            }
+            cnt++;
+        }
+
+        void deleteArrayAtIndex(int index) {
+            if (index < 0 || index >= cnt) {
+                std::cout << "Invalid index" << std::endl;
+                return;
+            }
+            
+            for (int i = index; i < cnt - 1; i++) {
+                arr[i] = arr[i + 1];
+            }
+            cnt--;
+        }
         
         void deleteArray(T a){
             for(int i=0; i<cnt; i++){
