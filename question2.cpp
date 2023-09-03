@@ -24,25 +24,24 @@ void generateRandomTestCases(List<int>::dynamicArray& dynamicArray, int probInse
     }
 }
 
-int main() {
-   
-    List<int>::dynamicArray dynamicArray;
-    dynamicArray.addArray(1);
-    dynamicArray.addArray(2);
-    dynamicArray.addArray(3);
-    dynamicArray.addArray(4);
-    dynamicArray.addArray(5);
-
-    for (int probInsert = 0; probInsert <= 100; probInsert += 10) {
-        for (int probStart = 0; probStart <= 100; probStart += 10) {
-            auto start = high_resolution_clock::now();
-            generateRandomTestCases(dynamicArray, probInsert, probStart);
-            auto end = high_resolution_clock::now();
-            auto duration = duration_cast<microseconds>(end - start);
-            cout << "Probability (Insert): " << probInsert << "%, Probability (Start): " << probStart
-                       << "%, Time taken: " << duration.count() << " microseconds" << endl;
-            dynamicArray.travel();
-        }
+int main(int argc, char* argv[]) {
+    if (argc != 3) {
+        cerr << "Usage: " << argv[0] << " <probability_insert> <probability_start>" << endl;
+        return 1;
     }
+
+    int probInsert = atoi(argv[1]);
+    int probStart = atoi(argv[2]);
+
+    List<int>::dynamicArray dynamicArray;
+
+    auto start = high_resolution_clock::now();
+    generateRandomTestCases(dynamicArray, probInsert, probStart);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(end - start);
+    cout << "Probability (Insert): " << probInsert << "%, Probability (Start): " << probStart
+               << "%, Time taken: " << duration.count() << " microseconds" << endl;
+    dynamicArray.arrayTravel();
+
     return 0;
 }
